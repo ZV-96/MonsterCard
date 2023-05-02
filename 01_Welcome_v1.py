@@ -12,3 +12,21 @@ choice = input("What would you like to do?\n"
                "4) Output catalogue\n"
                "5) Exit\n"
                "Enter number here: ")
+
+if choice == "1":
+    print("CONTINUE")
+
+elif choice == "2":
+    print("CONTINUE")
+
+elif choice == "3":
+    print("CONTINUE")
+
+elif choice == "4":
+    print("CONTINUE")
+
+elif choice == "5":
+    print("CONTINUE")
+
+else:
+    print("error invalid answer")

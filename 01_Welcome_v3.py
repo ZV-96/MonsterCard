@@ -12,7 +12,7 @@ while True:
                                         "Delete card","Output Catalogue",
                                         "Exit"])
 
-    # Testing the code to make sure it corresponds to the correct option
+    # Testing code to make sure it all works as expected
     if choice == "Add card":
         print("Add card")
 
