@@ -1,4 +1,4 @@
-"""V2 of the welcome screen trailling using easyGUI"""
+"""V2 of the welcome screen trailing using easyGUI"""
 
 import easygui
 

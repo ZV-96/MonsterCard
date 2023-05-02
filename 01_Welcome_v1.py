@@ -26,7 +26,7 @@ elif choice == "4":
     print("CONTINUE")
 
 elif choice == "5":
-    print("CONTINUE")
+    print("Exit")
 
 else:
     print("error invalid answer")
