@@ -1,5 +1,5 @@
 """V1 of Base program
-pulling all the functions together"""
+putting all the functions together"""
 
 
 import easygui
