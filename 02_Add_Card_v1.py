@@ -1,6 +1,6 @@
 """Add card version 1
 This code will be using an enterbox with multiple fields to get the
-user's card"""
+user's monster card"""
 
 import easygui
 
