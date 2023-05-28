@@ -1,8 +1,7 @@
-"""Base Program v3
-adding an add ard function and delete card
-function
+"""Final program
 """
 
+import sys
 import easygui
 
 # Stores cards in a dictionary
@@ -42,19 +41,19 @@ def home_screen():
 
     # Testing code to make sure it all works as expected
     if choice == "Add card":
-        print("Add card")
+        add_card()
 
     elif choice == "Delete card":
-        print("Delete card")
+        delete_card()
 
     elif choice == "Search card":
-        print("Search card")
+        search_card()
 
     elif choice == "Output Catalogue":
-        print("Output Catalogue")
+        output()
 
-    elif choice == "Exit":
-        print("Exit")
+    else:
+        sys.exit()
 
 
 # Function to find a Card
@@ -62,9 +61,9 @@ def search_card():
     card_name = easygui.enterbox("Enter the name of the creature you want to search for:", "Search")
 
     if card_name is None:
-        return
+        home_screen()
 
-    # capitalize the first letter of the input
+    # capitalize the input
     card_name = card_name.upper()
 
     # check if the card exists
@@ -76,7 +75,7 @@ def search_card():
 
         while True:
             choice = easygui.buttonbox(f"{message}\n\nWhat would you like to do?", "Card Details",
-                                       choices=["Return to Homescreen", "Edit Card Values, Search for a Card"])
+                                       choices=["Return to Homescreen", "Edit Card Values", "Search for a Card"])
 
             if choice == "Return to Homescreen":
                 home_screen()  # Return to homescreen
@@ -92,7 +91,7 @@ def search_card():
                 easygui.msgbox("Card Value updated!")
 
             elif choice == "Search for a Card":
-                break  # repeats code to search for new card
+                search_card() # repeats code to search for new card
 
     else:
         easygui.msgbox("Card not found.")
@@ -103,7 +102,7 @@ def add_card():
     # Ask the user for the name of the card they want to add
     card_name = easygui.enterbox("Enter the name of the creature you want to add:", "Add")
     if card_name is None:
-        return
+        home_screen()
     card_values = {"Strength": easygui.integerbox("Enter the strength of the creature:", "Add",
                                                   lowerbound=1, upperbound=25),
                    "Speed": easygui.integerbox("Enter the speed of the creature:", "Add",
@@ -122,17 +121,20 @@ def add_card():
     while True:
         choice = easygui.ynbox(f"{message}\n\nAre these values correct?", "Confirm Details")
         if choice:
-            break
+            easygui.msgbox("Card has been Added!")
+            home_screen()
         else:
             field = easygui.buttonbox("Which field would you like to change?", "Edit Field",
                                       choices=["Strength", "Speed", "Stealth", "Cunning"])
             new_value = easygui.integerbox(f"Enter the new value for {field}:"
                                            f"", "Edit Field", lowerbound=1, upperbound=25)
             card_values[field] = new_value
-            message = f"The following Monster Card has been updated:" \
-                      f"\n\nName: {card_name}\nStrength: {card_values['Strength']}\nSpeed:" \
-                      f" {card_values['Speed']}\nStealth: {card_values['Stealth']}\nCunning:" \
-                      f" {card_values['Cunning']}"
+
+            message = f"Card: {card_name}\nStrength: {card_values['Strength']}\nSpeed: {card_values['Speed']}" \
+                      f"\nStealth: {card_values['Stealth']}\nCunning: {card_values['Cunning']}"
+            easygui.msgbox(f"{message}")
+            easygui.msgbox("Card Value updated!")
+            home_screen()
     return
 
 
@@ -140,34 +142,38 @@ def add_card():
 def delete_card():
     while True:
         # asks user what cards name is
-        card_name = easygui.enterbox("Enter the name of the creature you want to delete (IN CAPS):",
+        card_name = easygui.enterbox("Enter the name of the creature you want to delete:",
                                      "Delete")
-        if card_name is None:
-            return
+        # capitalize the input
+        card_name = card_name.upper()
+
         # deletes card
         if card_name in existing_cards:
-            choice = easygui.ynbox("Are your sure you want to delete this?", "Confirmation",
+            choice = easygui.ynbox(f"Are your sure you want to delete {card_name}?", "Confirmation",
                                    choices=("Yes","No"))
             if choice:
                 del existing_cards[card_name]
                 easygui.msgbox("Monster Card deleted.")
-                return existing_cards
+                home_screen()
             else:
                 easygui.msgbox("Deletion Cancelled")
-                return None
+                home_screen()
+        elif card_name is None:
+            home_screen()
+
         else:
             easygui.msgbox(f"There is no Monster Card called {card_name} in the catalogue,"
                            f" Please try again")
-            return None
+            home_screen()
 
 
 # Output Full Catalogue Function
-def output(cards):
+def output():
 
     catalogue = ""
 
     # Loop to print full catalogue
-    for monster_name, monster_info in cards.items():
+    for monster_name, monster_info in existing_cards.items():
 
         # Print the card name
         catalogue += f"\n{monster_name}\n"
@@ -179,6 +185,7 @@ def output(cards):
     # Output the full menu
     print(f"**** Below is the full catalogue ****\n"
           f"{catalogue}\n\n")
+    home_screen()
 
 
 # Main Routine
