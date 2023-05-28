@@ -1,7 +1,6 @@
-"""Version 2 of add card, trialling an
-alternate way to ask the user for their card.
-Asks the user through multiple enter boxes
-rather than one big one, adds value limits"""
+"""Version 3 of add card,
+adding ability to edit card and a preview
+of said card"""
 
 import easygui
 
@@ -45,7 +44,27 @@ def add_card():
     card_values["Cunning"] = easygui.integerbox("Enter the cunning of the creature:", "Add",
                                                 lowerbound=1, upperbound=25)
     existing_cards[card_name] = card_values
-    easygui.msgbox(f"Great! added {card_name} to the catalogue of Monster Cards!")
+
+    # Display the newly added Card
+    message = f"The following Monster Card has been added:" \
+              f"\n\nName: {card_name}\nStrength: {card_values['Strength']}\nSpeed:" \
+              f" {card_values['Speed']}\nStealth: {card_values['Stealth']}\nCunning:" \
+              f" {card_values['Cunning']}"
+    while True:
+        choice = easygui.ynbox(f"{message}\n\nAre these values correct?", "Confirm Details")
+        if choice:
+            break
+        else:
+            field = easygui.buttonbox("Which field would you like to change?", "Edit Field",
+                                      choices=["Strength", "Speed", "Stealth", "Cunning"])
+            new_value = easygui.integerbox(f"Enter the new value for {field}:"
+                                           f"", "Edit Field", lowerbound=1, upperbound=25)
+            card_values[field] = new_value
+            message = f"The following Monster Card has been updated:" \
+                      f"\n\nName: {card_name}\nStrength: {card_values['Strength']}\nSpeed:" \
+                      f" {card_values['Speed']}\nStealth: {card_values['Stealth']}\nCunning:" \
+                      f" {card_values['Cunning']}"
+    return
 
 
 add_card()
