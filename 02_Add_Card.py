@@ -1,10 +1,9 @@
-"""Add card version 1
-This code will be using an enterbox with multiple
-fields to get the user's monster card"""
+"""Version 3 of add card,expands on v2
+by allowing user to edit card"""
 
 import easygui
 
-# Stores cards in a dictionary
+# Stores monster cards in a nested dictionary
 exist_cards = {"Stoneling":
                    {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
                "Vexscream":
@@ -29,33 +28,34 @@ exist_cards = {"Stoneling":
 
 new_card = {}
 
-# Get the values from the cards
-
-text = "Enter the following values of your card"  # Prompt for user to type
-title = "Enter card"  # Title shown
-
-# Fields to fill in
-input_list = ["Monster name", "Strength", "Speed", "Stealth", "Cunning"]
-
-# User's inputs are added to a list
-values = easygui.multenterbox(text, title, input_list)
+# Get the values for each category
+monster_name = easygui.enterbox(f"Enter the monster's name", "NAME")
+strength = easygui.enterbox(f"Enter the value for 'Strength'", "STRENGTH")
+speed = easygui.enterbox(f"Enter the value for 'Speed'", "SPEED")
+stealth = easygui.enterbox(f"Enter the value for 'Stealth'", "STEALTH")
+cunning = easygui.enterbox(f"Enter the value for 'Cunning'", "CUNNING")
 
 # Add the user's card to a new dictionary
 
-new_card[values[0]] = {}  # Adds key with monster name and empty dictionary
-new_card[values[0]]["Strength"] = values[1]  # Adds strength
-new_card[values[0]]["Speed"] = values[2]  # Adds speed
-new_card[values[0]]["Stealth"] = values[3]  # Adds stealth
-new_card[values[0]]["Cunning"] = values[4]  # Adds cunning
+new_card[monster_name] = {}  # Adds key with monster name and empty dictionary
+new_card[monster_name]["Strength"] = strength  # Adds strength
+new_card[monster_name]["Speed"] = speed  # Adds speed
+new_card[monster_name]["Stealth"] = stealth  # Adds stealth
+new_card[monster_name]["Cunning"] = cunning  # Adds cunning
 
-# Print the card and check with user that it is correct
+# show user card and ask if it is right
 card = ""
 for monster_name, card_info in new_card.items():
 
     for category in card_info:
         card += f"{category}: {card_info[category]}\n"
 
-easygui.buttonbox(f"Is the following card correct?\n\n"
-                  f"{monster_name}\n\n"
-                  f"{card}",
-                  choices=["Yes", "No"])
+correct = easygui.buttonbox(f"Is the following card correct?\n\n"
+                           f"{monster_name}\n\n"
+                           f"{card}",
+                           choices=["Yes", "No"])
+if correct == "Yes":
+    print("great! the card will be added to the database")
+
+elif correct == "No":
+    print("no")
