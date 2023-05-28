@@ -5,7 +5,7 @@ put v3 into a function for ease of use"""
 import easygui
 
 
-# Functions
+# Home screen function - acts as a main menu
 def home_screen():
 
     # Print welcome message

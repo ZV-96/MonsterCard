@@ -1,9 +1,8 @@
-"""search card v3, enabling the user to edit a card
-in the catalogue
+"""Base Program v2
+adding search card function, and re orginaising
 """
 
 import easygui
-
 
 # Stores cards in a dictionary
 existing_cards = {"STONELING":
@@ -27,6 +26,34 @@ existing_cards = {"STONELING":
                  "WHISPGOUL":
                  {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
                  }
+
+
+# Home screen function - acts as a main menu
+def home_screen():
+
+    # Print welcome message
+    easygui.msgbox("Welcome to Monster Card Catalogue", "WELCOME")
+
+    choice = easygui.buttonbox("Please pick an option.\n", "Options",
+                               choices=["Add card","Search card",
+                                        "Delete card","Output Catalogue",
+                                        "Exit"])
+
+    # Testing code to make sure it all works as expected
+    if choice == "Add card":
+        print("Add card")
+
+    elif choice == "Delete card":
+        print("Delete card")
+
+    elif choice == "Search card":
+        print("Search card")
+
+    elif choice == "Output Catalogue":
+        print("Output Catalogue")
+
+    elif choice == "Exit":
+        print("Exit")
 
 
 # Function to find a Card
@@ -68,7 +95,3 @@ def search_card():
 
     else:
         easygui.msgbox("Card not found.")
-
-
-# Testing
-search_card()
