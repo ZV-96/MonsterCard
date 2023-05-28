@@ -1,28 +1,7 @@
-"""output catalogue v2
-putting it into a function"""
+"""search cards v1
+allows for the search of card from the homescreen"""
 
-
-# Function to output the full catalogue
-def output(cards):
-
-    catalogue = ""
-
-    # Loop to print full catalogue
-    for monster_name, monster_info in cards.items():
-
-        # Print the card name
-        catalogue += f"\n{monster_name}\n"
-
-        # Print the card values
-        for key, value in monster_info.items():
-            catalogue += f"{key}: {value} \n"
-
-    # Output the full menu
-    print(f"**** Below is the full catalogue ****\n"
-          f"{catalogue}\n\n")
-
-
-# Main Routine
+import easygui
 
 # Stores cards in a dictionary
 existing_cards = {"STONELING":
@@ -47,4 +26,19 @@ existing_cards = {"STONELING":
                  {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
                  }
 
-output(exist_cards)
+
+# function to search for a card
+def search_card():
+    # Asks user what card to search for
+    card_name = easygui.enterbox("Enter the card name you want to search for:", "Search")
+    if card_name is None:
+        return
+    if card_name in existing_cards:
+        card_values = existing_cards[card_name]
+        easygui.msgbox("Card Found!")
+    else:
+        easygui.msgbox("Card not found.")
+        pass
+
+# Testing
+search_card()
