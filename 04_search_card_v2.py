@@ -4,7 +4,7 @@ values of card when searched
 
 import easygui
 
-#Stores cards in a dictionary
+# Stores cards in a dictionary
 existing_cards = {"STONELING":
                  {"Strength": 7, "Speed": 1, "Stealth": 25, "Cunning": 15},
                  "VEXSCREAM":
