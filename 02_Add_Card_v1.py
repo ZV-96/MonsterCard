@@ -50,12 +50,12 @@ new_card[values[0]]["Cunning"] = values[4]  # Adds cunning
 
 # Print the card and check with user that it is correct
 card = ""
-for monster_name, card_info in new_card.items():
+for card_name, card_info in new_card.items():
 
     for category in card_info:
         card += f"{category}: {card_info[category]}\n"
 
 easygui.buttonbox(f"Is the following card correct?\n\n"
-                  f"{monster_name}\n\n"
+                  f"{card_name}\n\n"
                   f"{card}",
                   choices=["Yes", "No"])

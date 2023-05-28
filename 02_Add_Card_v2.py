@@ -35,15 +35,14 @@ def add_card():
     card_name = easygui.enterbox("Enter the name of the creature you want to add:", "Add")
     if card_name is None:
         return
-    card_values = {}
-    card_values["Strength"] = easygui.integerbox("Enter the strength of the creature:", "Add",
-                                                 lowerbound=1, upperbound=25)
-    card_values["Speed"] = easygui.integerbox("Enter the speed of the creature:", "Add",
-                                              lowerbound=1, upperbound=25)
-    card_values["Stealth"] = easygui.integerbox("Enter the stealth of the creature:", "Add",
-                                                lowerbound=1, upperbound=25)
-    card_values["Cunning"] = easygui.integerbox("Enter the cunning of the creature:", "Add",
-                                                lowerbound=1, upperbound=25)
+    card_values = {"Strength": easygui.integerbox("Enter the strength of the creature:", "Add",
+                                                  lowerbound=1, upperbound=25),
+                   "Speed": easygui.integerbox("Enter the speed of the creature:", "Add",
+                                               lowerbound=1, upperbound=25),
+                   "Stealth": easygui.integerbox("Enter the stealth of the creature:", "Add",
+                                                 lowerbound=1, upperbound=25),
+                   "Cunning": easygui.integerbox("Enter the cunning of the creature:", "Add",
+                                                 lowerbound=1, upperbound=25)}
     existing_cards[card_name] = card_values
     easygui.msgbox(f"Great! added {card_name} to the catalogue of Monster Cards!")
 
