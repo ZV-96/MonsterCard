@@ -47,4 +47,4 @@ existing_cards = {"STONELING":
                  {"Strength": 17, "Speed": 19, "Stealth": 3, "Cunning": 2}
                  }
 
-output(exist_cards)
+output(existing_cards)

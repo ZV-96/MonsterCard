@@ -1,5 +1,5 @@
 """Base Program v2
-adding search card function, and re orginaising
+adding search card function, and re organising
 """
 
 import easygui
@@ -95,3 +95,32 @@ def search_card():
 
     else:
         easygui.msgbox("Card not found.")
+
+
+# Add Card function
+
+# Delete Card Function
+
+# Output Full Catalogue Function
+# Function to output the full catalogue
+def output(cards):
+
+    catalogue = ""
+
+    # Loop to print full catalogue
+    for monster_name, monster_info in cards.items():
+
+        # Print the card name
+        catalogue += f"\n{monster_name}\n"
+
+        # Print the card values
+        for key, value in monster_info.items():
+            catalogue += f"{key}: {value} \n"
+
+    # Output the full menu
+    print(f"**** Below is the full catalogue ****\n"
+          f"{catalogue}\n\n")
+
+
+# Main Routine
+home_screen()
