@@ -97,7 +97,7 @@ def search_card():
         easygui.msgbox("Card not found.")
 
 
-# Function to add a creature
+# Function to add a card
 def add_card():
     # Ask the user for the name of the card they want to add
     card_name = easygui.enterbox("Enter the name of the creature you want to add:", "Add")
