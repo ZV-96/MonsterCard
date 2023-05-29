@@ -58,7 +58,7 @@ def home_screen():
 
 # Function to find a Card
 def search_card():
-    card_name = easygui.enterbox("Enter the name of the creature you want to search for:", "Search")
+    card_name = easygui.enterbox("Enter the name of the card you want to search for:", "Search")
 
     if card_name is None:
         home_screen()
@@ -100,7 +100,7 @@ def search_card():
 # Function to add a card
 def add_card():
     # Ask the user for the name of the card they want to add
-    card_name = easygui.enterbox("Enter the name of the creature you want to add:", "Add")
+    card_name = easygui.enterbox("Enter the name of the card you want to add:", "Add")
     if card_name is None:
         home_screen()
     card_values = {"Strength": easygui.integerbox("Enter the strength of the creature:", "Add",
@@ -142,7 +142,7 @@ def add_card():
 def delete_card():
     while True:
         # asks user what cards name is
-        card_name = easygui.enterbox("Enter the name of the creature you want to delete:",
+        card_name = easygui.enterbox("Enter the name of the card you want to delete:",
                                      "Delete")
         # capitalize the input
         card_name = card_name.upper()

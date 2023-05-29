@@ -34,9 +34,9 @@ def search_card():
     card_name = easygui.enterbox("Enter the name of the creature you want to search for:", "Search")
 
     if card_name is None:
-        return
+        home_screen()
 
-    # capitalize the first letter of the input
+    # capitalize the input
     card_name = card_name.upper()
 
     # check if the card exists
@@ -48,7 +48,7 @@ def search_card():
 
         while True:
             choice = easygui.buttonbox(f"{message}\n\nWhat would you like to do?", "Card Details",
-                                       choices=["Return to Homescreen", "Edit Card Values, Search for a Card"])
+                                       choices=["Return to Homescreen", "Edit Card Values", "Search for a Card"])
 
             if choice == "Return to Homescreen":
                 home_screen()  # Return to homescreen
@@ -64,7 +64,7 @@ def search_card():
                 easygui.msgbox("Card Value updated!")
 
             elif choice == "Search for a Card":
-                break  # repeats code to search for new card
+                search_card() # repeats code to search for new card
 
     else:
         easygui.msgbox("Card not found.")
